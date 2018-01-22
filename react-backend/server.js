@@ -8,7 +8,7 @@ app.use(bodyParser.urlencoded({extended: false}))
 
 const router = express.Router()
 
-const staticFiles = express.static(path.join(__dirname, '../../client/build'))
+const staticFiles = express.static(path.join(__dirname, '../../alexa-react/build'))
 
 app.use(staticFiles)
 
