@@ -1,9 +1,15 @@
 {
+  "engines": {
+    "node": "6.11.3"
+  },
   "dependencies": {
     "concurrently": "^3.5.1"
   },
   "scripts": {
+    "build": "concurrently \"cd alexa-react && yarn build\" \"cd react-backend && yarn build\"",
     "install": "(cd alexa-react && yarn) && (cd react-backend && yarn)",
-    "start": "concurrently \"cd alexa-react && port=3000 yarn start\" \"cd react-backend && PORT=3001 yarn start\""
+    "start": "concurrently \"cd alexa-react && port=3000 yarn start\" \"cd react-backend && PORT=3001 yarn start\"",
+    "start:prod": "cd server && yarn start:prod",
+    "heroku-postbuild": "yarn build"
   }
 }
