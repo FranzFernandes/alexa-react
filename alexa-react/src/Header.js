@@ -26,20 +26,32 @@ const styles = {
 	},
 };
 
-
 export default class Header extends React.Component {
+   constructor(props ) {
+     super(props);
+     this.handleClick = this.handleClick.bind(this);
+     this.state = {
+       title: "Home"
+     };
+   }
+
+    handleClick(newState) {
+      this.setState({
+        title: newState
+        });
+    }
 	render(){
 		return(
 			<div>
 				<Appbar position="static">
 					<Toolbar>
 						<Typography type="title" color="inherit">
-                          Title
+                          {this.state.title}
                         </Typography>
-                        <Link to="/"><Button color="contrast">Home</Button></Link>
-                        <Link to="/dashboard"><Button color="contrast">Dashboard</Button></Link>
-                        <Link to="/login"><Button color="contrast">Login</Button></Link>
-                        <Link to="/about"><Button color="contrast">About</Button></Link>
+                        <Link to="/"><Button onClick={() => this.handleClick("Home") } color="contrast">Home</Button></Link>
+                        <Link to="/dashboard"><Button onClick={() => this.handleClick("Dashboard") } color="contrast">Dashboard</Button></Link>
+                        <Link to="/login"><Button onClick={() => this.handleClick("Login") }color="contrast">Login</Button></Link>
+                        <Link to="/about"><Button onClick={() => this.handleClick("About") }color="contrast">About</Button></Link>
 					</Toolbar>
 				</Appbar>
 				<Switch>
