@@ -1,22 +1,40 @@
 import React from 'react';
+import Grid from 'material-ui/Grid';
 
 export default class Dashboard extends React.Component {
-    state= {users: []}
+  state = {cities: []};
 
-    componentDidMount() {
-      fetch('/users')
-        .then(res => res.json())
-        .then(users => this.setState({ users }));
-    }
+  componentDidMount() {
+    fetch('/cities')
+      .then(res => res.json())
+      .then(cities => this.setState({cities}));
+  }
 
-	render(){
-        return (
-          <div>
-            <h1>Placeholder for Dashboard</h1>
-              {this.state.users.map(user =>
-                <div key={user.id}>{user.username}</div>
-              )}
-          </div>
-        );
-	}
+  render() {
+    return (
+      <div>
+        <Grid container spacing={24}>
+          <Grid item xs={12}>
+            <h1>Dashboard</h1>
+            <p>
+              Hier staat alle informatie over de gegeven commando's en maakt het
+              mogelijk om zelf dingen in te voeren
+            </p>
+          </Grid>
+          <Grid item xs={12}>
+            {this.state.cities.map(cities => (
+              <div key={cities.name}>
+                <Grid item xs={6}>
+                  {cities.name}
+                </Grid>
+                <Grid item xs={6}>
+                  {cities.population}
+                </Grid>
+              </div>
+            ))}
+          </Grid>
+        </Grid>
+      </div>
+    );
+  }
 }

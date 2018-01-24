@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 import {BrowserRouter} from 'react-router-dom';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';

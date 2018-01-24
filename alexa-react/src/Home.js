@@ -1,10 +1,11 @@
 import React from 'react';
-
+import typeface
 export default class Main extends React.Component {
   render() {
     return (
       <div>
-        <p>Dit is de homepagina</p>
+        <h1>Dit is de homepagina</h1>
+
       </div>
     )
   };
