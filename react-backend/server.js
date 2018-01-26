@@ -13,6 +13,7 @@ const router = express.Router();
 const staticFiles = express.static(
   path.join(__dirname, '../../alexa-react/build'),
 );
+var url = process.env.MONGOLAB_URI;
 
 app.use(staticFiles);
 
@@ -30,7 +31,7 @@ app.use('/*', staticFiles);
 app.set('port', process.env.PORT || 3001);
 
 MongoClient.connect(
-  'mongodb://francois:Hallo-Alexa@ds215208.mlab.com:15208/alexa-mongodb',
+  url,
   (err, database) => {
     if (err) return console.log(err);
     db = database.db('alexa-mongodb');
