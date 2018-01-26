@@ -5,7 +5,12 @@ export default class Dashboard extends React.Component {
   state = {tests: []};
 
   componentDidMount() {
-    fetch('/test')
+    fetch('/test', {
+      headers : {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+        }
+    })
       .then(function(response) {
         if(response.ok) {
           console.log("reponse got")
