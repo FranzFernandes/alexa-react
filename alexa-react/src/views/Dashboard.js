@@ -16,6 +16,8 @@ export default class Dashboard extends React.Component {
           console.log("reponse got")
           return response.json();
         }
+      }).catch(function() {
+        console.log("error")
       })
       .then(tests => this.setState({tests}));
     // this is a test fetch. Testing if this works
