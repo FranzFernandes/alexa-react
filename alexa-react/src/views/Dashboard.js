@@ -5,17 +5,23 @@ export default class Dashboard extends React.Component {
   state = {tests: []};
 
   componentDidMount() {
-    //fetch('/test')
-    // .then(res => res.json())
-    // .then(tests => this.setState({tests: []}))
-    //
     fetch('/test')
       .then(function(response) {
-        return response.json();
+        if(response.ok) {
+          console.log("reponse got")
+          return response.json();
+        }
       })
-      .then(function(json) {
-        json => this.setState({test : json.name});
+      .then(tests => this.setState({tests}));
+    // this is a test fetch. Testing if this works
+    fetch('/cities')
+      .then(function(response) {
+        if(response.ok) {
+          console.log("cities got")
+          return response.json();
+        }
       })
+      //.then(tests => this.setState({ tests }));
   }
 
   render() {
@@ -26,10 +32,9 @@ export default class Dashboard extends React.Component {
           Hier staat alle informatie over de gegeven commando's en maakt het
           mogelijk om zelf dingen in te voeren
         </p>
-        {this.state.tests}
         {this.state.tests.map(test => (
           <div key={test._id}>
-            {test.name} {test.year}
+            {test.name}{test.year}
           </div>
         ))}
       </div>
