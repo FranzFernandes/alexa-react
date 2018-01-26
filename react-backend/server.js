@@ -52,7 +52,8 @@ app.post('/test', (req, res) => {
 
 app.get('/test', (req, res) => {
   db.collection('test').find().toArray((err, result) => {
-    if (err) return console.log(err)
+    if (err) return console.log(err);
+    console.log(result)
     res.json(result)
   })
 })
