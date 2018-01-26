@@ -13,7 +13,6 @@ export default class Dashboard extends React.Component {
     })
       .then(function(response) {
         if(response.ok) {
-          console.log("reponse got")
           return response.json();
         }
       }).catch(function() {
