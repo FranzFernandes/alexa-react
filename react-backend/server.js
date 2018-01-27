@@ -58,7 +58,7 @@ app.post('/test', (req, res) => {
   });
 });
 
-app.get('/test', (req, res) => {
+router.get('/test', (req, res) => {
   db.collection('test').find({}).toArray((err, result) => {
     if (err){
       handleError(res, err.message, "failed to get results");
