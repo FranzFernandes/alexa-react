@@ -19,14 +19,14 @@ export default class Dashboard extends React.Component {
       })
       .then(tests => this.setState({tests}));
     // this is a test fetch. Testing if this works
-    fetch('/cities')
+/*    fetch('/cities')
       .then(function(response) {
         if(response.ok) {
           console.log("cities got")
           return response.json();
         }
       })
-      //.then(tests => this.setState({ tests }));
+      //.then(tests => this.setState({ tests }));*/
   }
 
   render() {
