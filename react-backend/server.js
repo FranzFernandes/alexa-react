@@ -44,7 +44,7 @@ MongoClient.connect(url,
   },
 );
 
-app.post('/test', (req, res) => {
+router.post('/test', (req, res) => {
   db.collection('test').save(req.body, (err, result) => {
     if (err) return console.log(err);
 
