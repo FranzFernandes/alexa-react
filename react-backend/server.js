@@ -17,6 +17,11 @@ var url = process.env.MONGOLAB_URI;
 
 app.use(staticFiles);
 
+function handleError(res, reason, message, code){
+  console.log("ERROR: " + reason);
+  res.status(code || 500 ).json({"error" : message});
+}
+
 router.get('/cities', (req, res) => {
   const cities = [
     {name: 'New York City', population: 8175133},
