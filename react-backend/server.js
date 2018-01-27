@@ -4,7 +4,7 @@ import path from 'path';
 const app = express();
 const MongoClient = require('mongodb').MongoClient;
 var db;
-var url = process.env.MONGODB_URI;
+var url = 'mongodb://francois:Hallo-Alexa@ds215208.mlab.com:15208/alexa-mongodb';
 
 app.use(bodyParser.json());
 
