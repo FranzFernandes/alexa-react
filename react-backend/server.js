@@ -4,16 +4,15 @@ import path from 'path';
 const app = express();
 const MongoClient = require('mongodb').MongoClient;
 var db;
+var url = process.env.MONGODB_URI;
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
 
 const router = express.Router();
 
 const staticFiles = express.static(
   path.join(__dirname, '../../alexa-react/build'),
 );
-var url = process.env.MONGOLAB_URI;
 
 app.use(staticFiles);
 
@@ -35,8 +34,7 @@ app.use(router);
 app.use('/*', staticFiles);
 app.set('port', process.env.PORT || 3001);
 
-MongoClient.connect(
-  url,
+MongoClient.connect(url,
   (err, database) => {
     if (err) return console.log(err);
     db = database.db('alexa-mongodb');
