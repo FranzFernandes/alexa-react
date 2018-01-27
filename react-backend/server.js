@@ -3,12 +3,10 @@ import express from 'express';
 import path from 'path';
 const app = express();
 const MongoClient = require('mongodb').MongoClient;
-var ObjectID = MongoClient.ObjectID;
 var db;
 var url = 'mongodb://francois:Hallo-Alexa@ds215208.mlab.com:15208/alexa-mongodb';
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended:  true}));
 
 const router = express.Router();
 
@@ -38,10 +36,7 @@ app.set('port', process.env.PORT || 3001);
 
 MongoClient.connect(url,
   (err, database) => {
-    if (err){
-      console.log(err);
-      process.exit(1);
-    }
+    if (err) return console.log(err);
     db = database.db('alexa-mongodb');
     app.listen(app.get('port'), () => {
       console.log(`Listening on ${app.get('port')}`);
@@ -59,7 +54,7 @@ app.post('/test', (req, res) => {
 });
 
 router.get('/test', (req, res) => {
-  db.collection('test').find({}).toArray((err, result) => {
+  db.collection('test').find().toArray((err, result) => {
     if (err){
       handleError(res, err.message, "failed to get results");
     } else {
