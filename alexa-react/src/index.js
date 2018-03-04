@@ -4,7 +4,6 @@ import registerServiceWorker from './registerServiceWorker';
 import {BrowserRouter} from 'react-router-dom';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import Header from './Header.js';
-
 const theme = createMuiTheme();
 
 ReactDOM.render(
