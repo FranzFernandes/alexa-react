@@ -3,7 +3,8 @@
     "node": "6.11.3"
   },
   "dependencies": {
-    "concurrently": "^3.5.1"
+    "concurrently": "^3.5.1",
+    "typeface-roboto": "0.0.54"
   },
   "scripts": {
     "build": "concurrently \"cd alexa-react && yarn build\" \"cd react-backend && yarn build\"",

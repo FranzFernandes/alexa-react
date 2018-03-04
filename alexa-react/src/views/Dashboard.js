@@ -1,5 +1,7 @@
 import React from 'react';
 import Grid from 'material-ui/Grid';
+import Typography from 'material-ui/Typography';
+
 
 export default class Dashboard extends React.Component {
   state = {tests: []};
@@ -32,8 +34,12 @@ export default class Dashboard extends React.Component {
   render() {
     return (
       <div>
-        <h1>Dashboard</h1>
-        <p>
+          <Typography type="title">
+              <h1>Dashboard</h1>
+          </Typography>
+          <Typography type="body1">
+
+          <p>
           Hier staat alle informatie over de gegeven commando's en maakt het
           mogelijk om zelf dingen in te voeren
         </p>
@@ -42,6 +48,7 @@ export default class Dashboard extends React.Component {
             {test.name}{test.year}
           </div>
         ))}
+          </Typography>
       </div>
     );
   }
