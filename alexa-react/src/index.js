@@ -9,9 +9,9 @@ const theme = createMuiTheme();
 ReactDOM.render(
   <div>
     <BrowserRouter>
-      <MuiThemeProvider theme={theme}>
+        {/* <MuiThemeProvider theme={theme}> */}
         <Header />
-      </MuiThemeProvider>
+        {/* </MuiThemeProvider> */}
     </BrowserRouter>
   </div>
 , document.getElementById('root'),

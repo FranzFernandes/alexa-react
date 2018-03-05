@@ -54,8 +54,9 @@ class Header extends React.Component {
               {this.state.title}
             </Typography>
             <div style={styles.menuButtons}>
+              <Typography variant="button" color="inherit">
               <Link to="/">
-                <Button onClick={() => this.handleClick('Home')}>Home</Button>
+                <Button color="white" onClick={() => this.handleClick('Home')}>Home</Button>
               </Link>
               <Link to="/dashboard">
                 <Button
@@ -69,6 +70,7 @@ class Header extends React.Component {
               <Link to="/about">
                 <Button onClick={() => this.handleClick('About')}>About</Button>
               </Link>
+              </Typography>
             </div>
           </Toolbar>
         </Appbar>
