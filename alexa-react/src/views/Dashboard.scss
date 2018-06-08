@@ -1,0 +1,36 @@
+@import '../globals';
+
+$break-small: 480px;
+
+
+
+.DashboardTabs{
+  width: 100%;
+}
+
+.Dashboard-body {
+  float:left;
+}
+
+.Dashboard-header {
+  margin-top: 50px;
+  margin-left: 20%;
+  width: 60%;
+  float: left;
+  @media screen and (max-width: $break-small) {
+    margin-left: 5%;
+    float: none;
+  }
+  
+}
+
+.Data {
+  font-size: 14px;
+  margin-left: 20%;
+  width: 60%;
+  float: left;
+  @media screen and (max-width: $break-small) {
+    margin-left: 5%;
+    float: none;
+  }
+}

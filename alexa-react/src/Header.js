@@ -1,88 +1,83 @@
-import React from 'react';
-import {Link, Route, Switch} from 'react-router-dom';
-import {withStyles} from 'material-ui/styles';
+import React, {PureComponent} from 'react';
+import PropTypes from 'prop-types';
+import {withRouter} from 'react-router';
+import {Route, Switch} from 'react-router-dom';
+import {NavigationDrawer} from 'react-md';
 
 //import views
-import Home from './Home.js';
+import Home from './views/Home.js';
 import Dashboard from './views/Dashboard.js';
-import Login from './views/Login.js';
 import About from './views/About.js';
+import NavItemLink from './NavItemLink.js';
 
-//Appbar imports
-import Button from 'material-ui/Button';
-import Appbar from 'material-ui/AppBar';
-import Toolbar from 'material-ui/Toolbar';
-import Typography from 'material-ui/Typography';
-import Grid from 'material-ui/Grid';
+const navItems = [
+  {
+    label: 'Home',
+    to: '/',
+    exact: true,
+    icon: 'home',
+  },
+  {
+    label: 'Dashboard',
+    to: '/Dashboard',
+    icon: 'dashboard',
+  },
+  {
+    label: 'About',
+    to: '/About',
+    icon: 'face',
+  },
+];
 
-const styles = {
-  root: {
-    width: '100%',
-    flexGrow: 1,
-  },
-  flex: {
-    flex: 1,
-  },
-  menuButtons: {
-    display: 'flex',
-    float: 'none',
-    marginRight: 0,
-    marginLeft: 'auto',
-  },
-};
+class Header extends PureComponent {
+  static propTypes = {
+    location: PropTypes.object.isRequired,
+  };
 
-class Header extends React.Component {
   constructor(props) {
-    super(props);
-    this.handleClick = this.handleClick.bind(this);
-    this.state = {
-      title: 'Home',
-    };
+    super();
+    this.state = {toolbarTitle: this.getCurrentTitle(props)};
   }
 
-  handleClick(newState) {
-    this.setState({
-      title: newState,
-    });
+  componentWillReceiveProps(nextProps) {
+    this.setState({toolbarTitle: this.getCurrentTitle(nextProps)});
   }
+
+  getCurrentTitle = ({location: {pathname}}) => {
+    const lastSection = pathname.substring(pathname.lastIndexOf('/') + 1);
+    if (lastSection === 'views' || lastSection === '') {
+      return 'Home';
+    }
+
+    return lastSection;
+  };
+
   render() {
+    const {toolbarTitle} = this.state;
+    const {location} = this.props;
     return (
-      <div>
-        <Appbar position="static" title={this.state.title}>
-          <Toolbar>
-            <Typography type="title" color="inherit">
-              {this.state.title}
-            </Typography>
-            <div style={styles.menuButtons}>
-              <Typography variant="button" color="inherit">
-              <Link to="/">
-                <Button color="white" onClick={() => this.handleClick('Home')}>Home</Button>
-              </Link>
-              <Link to="/dashboard">
-                <Button
-                  onClick={() => this.handleClick('Dashboard')}>
-                  Dashboard
-                </Button>
-              </Link>
-              <Link to="/login">
-                <Button onClick={() => this.handleClick('Login')}>Login</Button>
-              </Link>
-              <Link to="/about">
-                <Button onClick={() => this.handleClick('About')}>About</Button>
-              </Link>
-              </Typography>
-            </div>
-          </Toolbar>
-        </Appbar>
-        <Switch>
+      <NavigationDrawer
+        drawerTitle="Alexa-react"
+        toolbarTitle={toolbarTitle}
+        mobileDrawerType={NavigationDrawer.DrawerTypes.TEMPORARY_MINI}
+        tabletDrawerType={NavigationDrawer.DrawerTypes.PERSISTENT}
+        desktopDrawerType={NavigationDrawer.DrawerTypes.PERSISTENT}
+        // toolbarZDepth={0}
+        navItems={navItems.map(props => (
+          <NavItemLink {...props} key={props.to} />
+        ))}>
+        <div className="App">
+          <header className="App-header">
+          </header>
+        </div>
+        <Switch key={location.pathname}>
           <Route exact path="/" component={Home} />
-          <Route path="/dashboard" component={Dashboard} />
-          <Route path="/login" component={Login} />
-          <Route path="/about" component={About} />
+          <Route path="/Dashboard" component={Dashboard} />
+          <Route path="/About" component={About} />
         </Switch>
-      </div>
+      </NavigationDrawer>
     );
   }
 }
 
-export default withStyles(styles)(Header);
+export default withRouter(Header);

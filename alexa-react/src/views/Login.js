@@ -1,12 +1,11 @@
-import React from 'react';
-import Button from 'material-ui/Button';
+import React from "react";
 
 export default class Login extends React.Component {
-  render() {
-    return (
-      <Button raised color="primary">
+	render() {
+		return (
+			<div>
         Placeholder for Login
-      </Button>
-    );
-  }
+      </div>
+		);
+	}
 }
