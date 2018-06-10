@@ -1,25 +1,29 @@
 import bodyParser from 'body-parser';
 import express from 'express';
 import path from 'path';
+
 const app = express();
 const MongoClient = require('mongodb').MongoClient;
+const router = express.Router();
+const { check, validationResult } = require('express-validator/check'); // TODO ADD VALIDATIONS
+var morgan = require('morgan');
+
 var db;
 var url = 'mongodb://francois:Hallo-Alexa@ds215208.mlab.com:15208/alexa-mongodb';
-
-app.use(bodyParser.json());
-
-const router = express.Router();
-
+var errorhandler = require('errorhandler');
 const staticFiles = express.static(
   path.join(__dirname, '../../alexa-react/build'),
 );
 
-app.use(staticFiles);
+app.use(bodyParser.json());
+app.use(router);
+app.use(errorhandler);
+app.use(morgan('tiny'));
 
-function handleError(res, reason, message, code){
-  console.log("ERROR: " + reason);
-  res.status(code || 500 ).json({"error" : message});
-}
+
+app.use('/*', staticFiles);
+app.set('port', process.env.PORT || 3001);
+app.use(staticFiles);
 
 router.get('/cities', (req, res) => {
   const cities = [
@@ -29,10 +33,11 @@ router.get('/cities', (req, res) => {
   ];
   res.json(cities);
 });
-app.use(router);
 
-app.use('/*', staticFiles);
-app.set('port', process.env.PORT || 3001);
+//router.use((req, res, next) => {
+//  console.log(req.method + "Request Received");
+//  next();
+//})
 
 MongoClient.connect(url,
   (err, database) => {
@@ -53,6 +58,15 @@ router.post('/test', (req, res) => {
   });
 });
 
+router.post('log', (req, res) => {
+  db.collection('test').save(req.body, (err, result) => {
+    if (err) return console.log(err);
+
+    console.log('saved to database');
+    res.redirect('/');
+  })
+})
+
 router.get('/test', (req, res) => {
   db.collection('test').find().toArray((err, result) => {
     if (err){
@@ -62,3 +76,4 @@ router.get('/test', (req, res) => {
     }
   })
 });
+
