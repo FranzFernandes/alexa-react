@@ -34,8 +34,10 @@ class Logger extends React.Component {
       <div className="Dataholder">
         {this.state.logs.map(log => (
           <div key={log._id}>
-            {log.username}
-            {log.password}
+            {log.date}
+            {log.device}
+            {log.function}
+            {log.value}
           </div>
         ))}
       </div>

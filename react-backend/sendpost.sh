@@ -1,4 +1,4 @@
 curl --header "Content-Type: application/json" \
   --request POST \
-  --data '{"username":"xyz","password":"xyz"}' \
+  --data '{"device": "Other","function":"turn on","value":"1"}' \
   http://localhost:3001/test 
