@@ -1,0 +1,9 @@
+Sinds dit project ook gehost wordt op Heroku, is het ook te zien op http://alexa-react.herokuapp.com
+Ter verklaring, dit project heet ook Alexa-react doordat her originele idee was om deze applicatie werkend te krijgen met Alexa en niet google assistant. Vandaar deze rare namen voor de folders
+
+Folder hierarchy: 
+    Alexa-react     :       React-server,
+    react-backend   :       Express server,
+    Particle        :       Code for the Particle Core
+;
+
