@@ -54,9 +54,30 @@ router.post('/test', (req, res) => {
   });
 });
 
-// router.post('/logging', [check('')(req, res) => {
+
+// POST commands nemen de volgende objecten mee:
+//  Device, Date(?), Command, 
+// DEFAULT = 
+// {
+//   "event": [event-name],
+//   "data": [event-data],
+//   "published_at": [timestamp],
+//   "coreid": [device-id]
+// }
+
+// logger: date (published_at), device, function, value
+
+// router.post('/logging', [check('data').isISO8601()], (req, res) => {
+router.post('/logging', (req, res) => {
+
+  db.collection('test').save(req.body, (err, result) => {
+    if (err) return console.log(err);
+
+    console.log('saved to database');
+    res.send('success!');
+  })
   
-// })
+})
 
 router.get('/test', (req, res) => {
   db.collection('test').find().toArray((err, result) => {

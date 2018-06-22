@@ -12,7 +12,7 @@ class Logger extends React.Component {
     })
       .then(response => {
         if (response.ok) {
-          console.log(response);
+          // console.log(response);
           return response.json();
         }
       })

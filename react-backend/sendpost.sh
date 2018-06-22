@@ -1,4 +1,6 @@
-curl --header "Content-Type: application/json" \
+curl \
+  --header "Authorization: Bearer 7427afdb560cb5095c33c24ae3038b455a58f0b6" \
+  --header "Content-Type: application/json" \
   --request POST \
-  --data '{"device": "Other","function":"turn on","value":"1"}' \
-  http://localhost:3001/test 
+  --data '{"args": "off"}' \
+  https://api.particle.io/v1/devices/54ff6d066678574954240167/turnon
