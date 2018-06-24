@@ -66,10 +66,8 @@ class Header extends PureComponent {
         navItems={navItems.map(props => (
           <NavItemLink {...props} key={props.to} />
         ))}>
-        <div className="App">
-          <header className="App-header">
-          </header>
-        </div>
+        <header className="App-header">
+        </header>
         <Switch key={location.pathname}>
           <Route exact path="/" component={Home} />
           <Route path="/Dashboard" component={Dashboard} />

@@ -1,4 +1,6 @@
 import React from 'react';
+import { Card, CardTitle, CardText } from 'react-md';
+import './Logger.css';
 
 class Logger extends React.Component {
   state = {logs: []};
@@ -32,14 +34,23 @@ class Logger extends React.Component {
   render() {
     return (
       <div className="Dataholder">
-        {this.state.logs.map(log => (
-          <div key={log._id}>
-            {log.date}
-            {log.device}
-            {log.function}
-            {log.value}
-          </div>
-        ))}
+      <p>Dit is de Logger, hierin staat alle informatie die verstuurd wordt van de Particle naar de server toe.
+        Dit is nog een beetje work-in-progress/
+      </p>
+        <Card className="md-block-centered" >
+          <CardTitle title="Dit is de logger"/>
+          <CardText>
+
+            {this.state.logs.map(log => (
+              <div key={log._id}>
+                {log.published_at}
+                {log.device}
+                {log.function}
+                {log.value}
+              </div>
+            ))}
+          </CardText>
+        </Card>
       </div>
     );
   }

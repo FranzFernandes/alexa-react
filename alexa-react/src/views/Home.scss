@@ -1,15 +1,14 @@
 @import '../globals';
 
-.App {
-  text-align: center;
-}
+$break-small: 480px;
 
-.App-header {
-  background-color: $md-teal-500;
-  height: 150px;
-  padding: 20px;
-
-  h1 {
-    color: $md-white-base;
+.App{
+  float: left;
+  p {
+    float: left;
+  }
+  ul {
+    float: left;
+    margin-left: 10px;
   }
 }
