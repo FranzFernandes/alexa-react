@@ -38,7 +38,7 @@ class Logger extends React.Component {
         Dit is nog een beetje work-in-progress/
       </p>
         <Card className="md-block-centered" >
-          <CardTitle title="Dit is de logger"/>
+          <CardTitle title="Logger"/>
           <CardText>
 
             {this.state.logs.map(log => (

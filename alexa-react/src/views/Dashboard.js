@@ -2,6 +2,7 @@ import React from 'react';
 import {CompactPicker} from 'react-color';
 import {TabsContainer, Tabs, Tab, Button, Snackbar} from 'react-md';
 import Logger from './Logger.js';
+import About from './About.js';
 
 import './Dashboard.css';
 
@@ -11,6 +12,11 @@ state = {
   toasts: [],
   autohide: true,
 };
+
+toastHello = () => {
+  console.log("toast is called");
+  this.addToast("Hello");
+}
 
 addToast = (text, action, autohide = true) => {
   this.setState((state) => {
@@ -33,6 +39,7 @@ handleChangeComplete = (color, event) => {
 };
 
 handleSendPost = (command, arg) => {
+  this.addToast("Command has been sent!");
   console.log("turn on the lights! ");
   console.log(arg);
   var url = "https://api.particle.io/v1/devices/54ff6d066678574954240167/";
@@ -47,9 +54,8 @@ handleSendPost = (command, arg) => {
     })
   }).then(function(res) {
     if (res.ok) {
-      this.addToast("Sent!")
       console.log("send the request sucessfully")
-    } else if (res.status == 401) {
+    } else if (res.status === 401) {
       this.addToast("Something went wrong!")
       console.log("oops you are not authorized");
     }
@@ -64,7 +70,6 @@ handleSendPost = (command, arg) => {
     return (
       <div className="Dashboard">
         <div className="DashboardTabs">
-          {
             <TabsContainer panelClassName="md-grid" colored>
               <Tabs tabId="simple-tab">
                 <Tab label="ColorPicker">
@@ -80,20 +85,15 @@ handleSendPost = (command, arg) => {
                        <p>
                          <CompactPicker color={ this.state.color} onChangeComplete= {this.handleChangeComplete}/>
                         </p>
-                       <p>Vervolgens hebben we hier alle knoppen. De eerste twee zijn gewoon om de knoppen aan en uit te zetten</p>
+                       <br /><p>Vervolgens hebben we hier alle knoppen. De eerste twee zijn gewoon om de knoppen aan en uit te zetten</p>
                         <div className="Dashboard-buttons">
                           <Button raised onClick={() => this.handleSendPost("turnonoff", "on")}>Turn on the lights!</Button>
                           <div className="divider" />
                           <Button raised onClick={() => this.handleSendPost("turnonoff", "off")}>Turn off the lights!</Button>
+                          <br /><br />
                           <p>En met deze knop kunnen we de ingevulde waarde van de colorpicker versturen naar de ledstrip!</p>
                           <Button raised onClick={() => this.handleSendPost("setcolor", this.state.color)}>Set Color</Button>
                         </div>
-                        <Snackbar
-                        id="postsend"
-                        toasts={toasts}
-                        autohide={autohide}
-                        onDismiss={this.dismissToast}
-                        />
                     </div>
                   </div>
                 </Tab>
@@ -104,7 +104,12 @@ handleSendPost = (command, arg) => {
                 </Tab>
               </Tabs>
             </TabsContainer>
-          }
+          <Snackbar
+            id="postsend"
+            toasts={toasts}
+            autohide={autohide}
+            onDismiss={this.dismissToast}
+            />
         </div>
       </div>
     );
