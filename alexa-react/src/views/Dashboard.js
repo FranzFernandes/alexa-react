@@ -2,7 +2,6 @@ import React from 'react';
 import {CompactPicker} from 'react-color';
 import {TabsContainer, Tabs, Tab, Button, Snackbar} from 'react-md';
 import Logger from './Logger.js';
-import About from './About.js';
 
 import './Dashboard.css';
 
@@ -93,6 +92,9 @@ handleSendPost = (command, arg) => {
                           <br /><br />
                           <p>En met deze knop kunnen we de ingevulde waarde van de colorpicker versturen naar de ledstrip!</p>
                           <Button raised onClick={() => this.handleSendPost("setcolor", this.state.color)}>Set Color</Button>
+                          <p> Deze maakt een mooie regenboog!</p>
+                          <Button raised onClick={() => this.handleSendPost("turnonoff", "rainbow")}>RAINBOW!</Button>
+
                         </div>
                     </div>
                   </div>
