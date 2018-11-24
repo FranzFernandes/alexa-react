@@ -41,12 +41,12 @@ handleSendPost = (command, arg) => {
   this.addToast("Command has been sent!");
   console.log("turn on the lights! ");
   console.log(arg);
-  var url = "https://api.particle.io/v1/devices/54ff6d066678574954240167/";
+  var url = "https://api.particle.io/v1/devices/"; //add Device id
   fetch(url + command , {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer 7427afdb560cb5095c33c24ae3038b455a58f0b6'
+      'Authorization': //add Token
     },
     body: JSON.stringify({
       'args': arg,
